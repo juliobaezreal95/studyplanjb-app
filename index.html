@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyPlanJB - Seu Kit de Ferramentas Online</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    
+    
+    <header>
+        <div class="container">
+            <h2>📖</h2> <h1>StudyPlanJB</h1>
+            <p>Seu kit completo de ferramentas online e gratuitas</p>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container">
+            <button class="nav-btn active" data-section="home">🏠 Início</button>
+            <button class="nav-btn" data-section="calculators">🧮 Calculadoras</button>
+            <button class="nav-btn" data-section="pdf-tools">📄 PDF Tools</button>
+            <button class="nav-btn" data-section="study-planner">📚 Study Planner</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        
+        <section id="home-section" class="section active">
+            <div class="hero">
+                <h2>    Bem-vindo(a)!    </h2>
+                <p>Ferramentas práticas e gratuitas para seu dia a dia</p>
+            </div>
+            
+            <div class="tools-grid">
+                <div class="tool-card" data-section="calculators">
+                    <div class="tool-icon">🧮</div>
+                    <h3>Calculadoras</h3>
+                    <p>Calculadora comum, gorjeta, IMC, conversões</p>
+                </div>
+                
+                <div class="tool-card" data-section="pdf-tools">
+                    <div class="tool-icon">📄</div>
+                    <h3>PDF Tools</h3>
+                    <p>Texto para PDF, HTML para PDF, conversores</p>
+                </div>
+                
+                <div class="tool-card" data-section="study-planner">
+                    <div class="tool-icon">📚</div>
+                    <h3>Study Planner</h3>
+                    <p>Bloco de notas, flashcards, organizador</p>
+                </div>
+            </div>
+        </section>
+
+       
+        <section id="calculators-section" class="section">
+            <h2>🧮 Calculadoras Úteis</h2>
+            <div class="calculators-grid">
+                
+                <div class="calculator-card full-width">
+                    <h3>🔢 Calculadora Comum</h3>
+                    <div class="standard-calculator">
+                        <div class="calculator-display">
+                            <input type="text" id="calc-display" readonly value="0">
+                        </div>
+                        <div class="calculator-buttons">
+                            <button onclick="clearDisplay()" class="btn-clear">C</button>
+                            <button onclick="deleteLast()" class="btn-clear">⌫</button>
+                            <button onclick="appendToDisplay('/')" class="btn-operator">/</button>
+                            <button onclick="appendToDisplay('*')" class="btn-operator">×</button>
+                            
+                            <button onclick="appendToDisplay('7')">7</button>
+                            <button onclick="appendToDisplay('8')">8</button>
+                            <button onclick="appendToDisplay('9')">9</button>
+                            <button onclick="appendToDisplay('-')" class="btn-operator">-</button>
+                            
+                            <button onclick="appendToDisplay('4')">4</button>
+                            <button onclick="appendToDisplay('5')">5</button>
+                            <button onclick="appendToDisplay('6')">6</button>
+                            <button onclick="appendToDisplay('+')" class="btn-operator">+</button>
+                            
+                            <button onclick="appendToDisplay('1')">1</button>
+                            <button onclick="appendToDisplay('2')">2</button>
+                            <button onclick="appendToDisplay('3')">3</button>
+                            <button onclick="calculate()" class="btn-equals" rowspan="2">=</button>
+                            
+                            <button onclick="appendToDisplay('0')" class="btn-zero">0</button>
+                            <button onclick="appendToDisplay('.')">.</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="calculator-card">
+                    <h3>💰 Calculadora de Gorjeta</h3>
+                    <div class="calculator-form">
+                        <label>Valor da Conta (R$):</label>
+                        <input type="number" id="bill-amount" placeholder="100.00" step="0.01" min="0">
+                        
+                        <label>Porcentagem da Gorjeta:</label>
+                        <input type="range" id="tip-range" min="0" max="100" value="15" step="1">
+                        <div class="range-value">
+                            <span id="tip-value">15%</span>
+                        </div>
+                        
+                        <label>Número de Pessoas:</label>
+                        <input type="number" id="people-count" value="1" min="1">
+                        
+                        <button onclick="calculateTip()">Calcular Gorjeta</button>
+                        
+                        <div id="tip-result" class="result"></div>
+                    </div>
+                </div>
+
+                
+                <div class="calculator-card">
+                    <h3>📊 Calculadora de IMC</h3>
+                    <div class="calculator-form">
+                        <label>Peso (kg):</label>
+                        <input type="number" id="weight" placeholder="70" step="0.1" min="1" max="650">
+                        
+                        <label>Altura (m):</label>
+                        <input type="number" id="height" placeholder="1.75" step="0.01" min="0.5" max="2.55">
+                        
+                        <button onclick="calculateBMI()">Calcular IMC</button>
+                        
+                        <div id="bmi-result" class="result"></div>
+                    </div>
+                </div>
+
+               
+                <div class="calculator-card">
+                    <h3>📏 Conversor de Unidades</h3>
+                    <div class="calculator-form">
+                        <label>Valor:</label>
+                        <input type="number" id="converter-value" placeholder="100" step="0.01">
+                        
+                        <label>De:</label>
+                        <select id="converter-from">
+                            <option value="km">Quilômetros</option>
+                            <option value="m">Metros</option>
+                            <option value="cm">Centímetros</option>
+                            <option value="kg">Quilogramas</option>
+                            <option value="lb">Libras</option>
+                            <option value="c">Celsius</option>
+                            <option value="f">Fahrenheit</option>
+                        </select>
+                        
+                        <label>Para:</label>
+                        <select id="converter-to">
+                            <option value="m">Metros</option>
+                            <option value="km">Quilômetros</option>
+                            <option value="cm">Centímetros</option>
+                            <option value="lb">Libras</option>
+                            <option value="kg">Quilogramas</option>
+                            <option value="f">Fahrenheit</option>
+                            <option value="c">Celsius</option>
+                        </select>
+                        
+                        <button onclick="convertUnits()">Converter</button>
+                        
+                        <div id="converter-result" class="result"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        >
+        <section id="pdf-tools-section" class="section">
+            <h2>📄 Ferramentas PDF</h2>
+            <div class="pdf-tools-grid">
+              
+                <div class="tool-feature">
+                    <h3>📝 Texto para PDF</h3>
+                    <div class="pdf-form">
+                        <label>Digite seu texto:</label>
+                        <textarea id="pdf-text" placeholder="Digite seu texto aqui..." rows="8"></textarea>
+                        <label>Nome do arquivo:</label>
+                        <input type="text" id="pdf-filename" placeholder="meu-documento" value="documento">
+                        <button onclick="textToPDF()">📄 Gerar PDF</button>
+                    </div>
+                </div>
+
+                
+                <div class="tool-feature">
+                    <h3>🌐 HTML para PDF</h3>
+                    <div class="pdf-form">
+                        <label>Cole seu HTML:</label>
+                        <textarea id="html-content" placeholder='<h1>Título</h1><p>Conteúdo...</p>' rows="8"></textarea>
+                        <button onclick="htmlToPDF()">📄 Gerar PDF do HTML</button>
+                    </div>
+                </div>
+
+                
+                <div class="tool-feature">
+                    <h3>🖼️ Imagem para PDF</h3>
+                    <div class="pdf-form">
+                        <label>Selecione uma imagem:</label>
+                        <input type="file" id="image-input" accept="image/*">
+                        <button onclick="imageToPDF()" id="image-to-pdf-btn">📄 Converter Imagem para PDF</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        
+        <section id="study-planner-section" class="section">
+            <h2>📚 Study Planner</h2>
+            <div class="study-tools-grid">
+                
+                <div class="study-tool">
+                    <h3>📝 Bloco de Notas</h3>
+                    <div class="notes-container">
+                        <textarea id="study-notes" placeholder="Digite suas anotações de estudo aqui..." rows="12"></textarea>
+                        <div class="notes-actions">
+                            <button onclick="saveNotes()">💾 Salvar Notas</button>
+                            <button onclick="clearNotes()">🗑️ Limpar</button>
+                            <button onclick="exportNotes()">📄 Exportar PDF</button>
+                            <button onclick="downloadNotes()">📥 Download TXT</button>
+                        </div>
+                        <div id="notes-status" class="status-message"></div>
+                    </div>
+                </div>
+
+              
+                <div class="study-tool">
+                    <h3>🎴 Flashcards</h3>
+                    <div class="flashcards-container">
+                        <div class="flashcard-form">
+                            <input type="text" id="flashcard-front" placeholder="Frente do card" class="flashcard-input">
+                            <input type="text" id="flashcard-back" placeholder="Verso do card" class="flashcard-input">
+                            <button onclick="addFlashcard()">➕ Adicionar Card</button>
+                        </div>
+                        <div id="flashcards-list" class="flashcards-list"></div>
+                        <div class="flashcards-actions">
+                            <button onclick="studyFlashcards()">📚 Estudar Cards</button>
+                            <button onclick="clearFlashcards()">🗑️ Limpar Todos</button>
+                            <button onclick="exportFlashcards()">📄 Exportar PDF</button>
+                        </div>
+                    </div>
+                </div>
+
+               
+                <div class="study-tool">
+                    <h3>⏰ Timer Pomodoro</h3>
+                    <div class="pomodoro-container">
+                        <div class="timer-display">
+                            <span id="timer-minutes">25</span>:<span id="timer-seconds">00</span>
+                        </div>
+                        <div class="timer-controls">
+                            <button onclick="startPomodoro()">▶️ Iniciar</button>
+                            <button onclick="pausePomodoro()">⏸️ Pausar</button>
+                            <button onclick="resetPomodoro()">⏹️ Resetar</button>
+                        </div>
+                        <div class="pomodoro-settings">
+                            <label>Tempo de Estudo (min):</label>
+                            <input type="number" id="study-time" value="25" min="1" max="120">
+                            <label>Tempo de Pausa (min):</label>
+                            <input type="number" id="break-time" value="5" min="1" max="30">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 StudyPlanJB - Ferramentas gratuitas para todos</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StudyPlanJB - Seu Kit de Ferramentas Online</title>
+    
+    <!-- CONFIGURAÇÕES PWA -->
+    <meta name="theme-color" content="#002beb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="ToolHub">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" href="icon-192.png">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    
+    <link rel="stylesheet" href="style.css">
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+</body>
+</html>
