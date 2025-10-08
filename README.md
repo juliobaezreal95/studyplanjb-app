@@ -8,4 +8,4 @@ Kit completo de ferramentas online PWA para estudantes! Inclui calculadoras, con
 - 📚 Study Planner (notas, flashcards, timer)
 - 📱 PWA - Instalável como app nativo
 
-**🔗 Demo:** https://jullobacarea95.github.io/studyplanjb-app/
+**🔗 Demo:** https://juliobaezreal95.github.io/studyplanjb-app/
