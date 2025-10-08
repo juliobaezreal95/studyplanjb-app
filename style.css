@@ -215,8 +215,8 @@ header p {
 
 .calculator-form button {
     padding: 12px;
-    background: linear-gradient(135deg, #e8e9f0, #f3f3f3);
-    color: white;
+    background: linear-gradient(135deg, #3b4dda, #3a3939);
+    color: rgb(255, 254, 254);
     border: none;
     border-radius: 8px;
     font-size: 1rem;
@@ -228,7 +228,7 @@ header p {
     transform: translateY(-2px);
 }
 
-/* CALCULADORA PADRÃO */
+
 .standard-calculator {
     max-width: 400px;
     margin: 0 auto;
@@ -239,7 +239,7 @@ header p {
     padding: 20px;
     font-size: 2rem;
     text-align: right;
-    border: 2px solid #ddd;
+    border: 2px solid #0a48f5;
     border-radius: 10px;
     margin-bottom: 1rem;
     background: #f8f9fa;
@@ -258,8 +258,8 @@ header p {
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
-    background: #f8f9fa;
-    border: 2px solid #e9ecef;
+    background: #ffffff;
+    border: 2px solid #006cd8;
 }
 
 .calculator-buttons button:hover {
@@ -301,7 +301,7 @@ input[type="range"] {
     width: 100%;
     height: 8px;
     border-radius: 5px;
-    background: #ddd;
+    background: #941515;
     outline: none;
 }
 
@@ -346,7 +346,7 @@ input[type="range"] {
     font-family: monospace;
 }
 
-/* STUDY PLANNER */
+
 .study-tools-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
@@ -406,7 +406,7 @@ input[type="range"] {
     transform: translateY(-2px);
 }
 
-/* FLASHCARDS */
+
 .flashcard-form {
     display: flex;
     flex-direction: column;
@@ -481,7 +481,7 @@ input[type="range"] {
     border-radius: 8px;
     cursor: pointer;
     background: #032ef0;
-    color: white;
+    color: rgb(255, 255, 255);
     transition: transform 0.3s ease;
 }
 
@@ -498,17 +498,17 @@ input[type="range"] {
 
 .pomodoro-settings input {
     padding: 8px;
-    border: 2px solid #e1e5e9;
+    border: 2px solid #000000;
     border-radius: 5px;
 }
 
-/* RESULTADOS E STATUS */
+
 .result {
     margin-top: 1rem;
     padding: 1rem;
-    background: #f8f9fa;
+    background: #0130ff56;
     border-radius: 8px;
-    border-left: 4px solid #002fff;
+    border-left: 4px solid #2261df;
     font-weight: 600;
 }
 
